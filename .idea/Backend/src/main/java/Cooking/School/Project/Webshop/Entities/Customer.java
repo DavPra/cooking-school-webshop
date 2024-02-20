@@ -1,25 +1,65 @@
 package Cooking.School.Project.Webshop.Entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
+@Table(name = "customers")
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
-    private int customerID;
+
+    @Id
+    @GeneratedValue()
+    @GenericGenerator(
+            name = "courseSequence",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "course_sequence"),
+                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+            }
+
+    )
+
+    private Long customerID;
+
+    @Setter
     private String firstName;
+
+    @Setter
     private String lastName;
+
+    @Setter
     private String email;
+
+    @Setter
     private String password;
+
+    @Setter
     private String address;
+
+    @Setter
     private String city;
+
+    @Setter
     private String postalCode;
+
+    @Setter
     private String country;
-    private String phone;
 
-    public Customer() {
-    }
+    @Setter
+    private String phoneNumber;
 
-    public Customer(int customerID, String firstName, String lastName, String email, String password, String address, String city, String postalCode, String country, String phone) {
-        this.customerID = customerID;
+    public Customer(String firstName, String lastName, String email, String password, String address, String city, String postalCode, String country, String phoneNumber, String role, String status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -28,46 +68,11 @@ public class Customer {
         this.city = city;
         this.postalCode = postalCode;
         this.country = country;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
     }
 
-    public int getCustomerID() {
-        return customerID;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
 }
+
+
